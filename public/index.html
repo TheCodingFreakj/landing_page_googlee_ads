@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Programming Chunks</title>
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" />
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+
+    <section class="header-section">
+        <p> 30 % off on referral </p>
+
+    </section>
+
+    <section class="brand-section">
+        <img src="./imgs/company-logo.png" alt="company-logo" />
+
+    </section>
+
+    <section class="promo-section-01">
+        <div class="container-fluid header-image">
+            <div class="d-flex flex-column mb-3 custom-flex">
+                <div>
+                    <span>Pixels with purpose</span>
+                    <h1>Cleaner, efficient layouts for your
+                        next site
+                    </h1>
+                </div>
+                <div class="p-2">
+                    <p>Open up your business to modern
+                        alternatives
+                    </p>
+                </div>
+                <div class="d-flex align-items-stretch"> <button type="button" class="btn btn-success custom-button">Get
+                        A Discovery Call</button>
+                    <button type="button" class="btn btn-outline-success
+                            custom-button custom-button-services">See Services</button>
+                </div>
+            </div>
+            <div class="col">
+
+                <form id="my-form" class="form">
+                    <div class="form-group-v">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                    </div>
+                    <div class="form-group-v">
+                        <label for="exampleInputName1">Name</label>
+                        <input type="text" name="name" class="form-control" id="exampleInputName1" placeholder="Name">
+                    </div>
+
+                    <div class="form-group-v">
+                        <label for="exampleInputPhone1">Phone</label>
+                        <input type="text" name="phone" class="form-control" id="exampleInputPhone1" placeholder="Phone">
+                    </div>
+
+                    <div class="form-group-v">
+                        <label for="exampleInputMessage1">Your Message</label>
+                        <textarea name="message" class="form-control" id="exampleInputMessage1" placeholder="Your
+                                Message" rows="5" cols="33">
+
+                            </textarea>
+                    </div>
+                    <div id="sendmessage" class="btn btn-success custom-style-btn hideSuccessMessage" ></div>
+                   
+                    <button type="submit" class="btn btn-success custom-btn">Get
+                        Quote</button>
+                </form>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="promo-section-02">
+
+        <div class="container text-center">
+            <h1>How Things Work</h1>
+            <div class="row align-items-stretch">
+                <div class="col">
+                    <div class="card">
+                        <img src="./imgs/web-design-website-coding-concept.jpg" class="card-img-top" alt="...">
+                        <div class="card-body cartText">
+                            <h3>Web Design</h3>
+                            <p class="card-text">Creative, flexible and
+                                affordable website design.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="./imgs/web-design-website-coding-concept.jpg" class="card-img-top" alt="...">
+                        <div class="card-body cartText">
+                            <h3>Web Development</h3>
+                            <p class="card-text">The goal isn't to build a
+                                website. The goal is to build your business.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="./imgs/web-design-website-coding-concept.jpg" class="card-img-top" alt="...">
+                        <div class="card-body cartText">
+                            <h3>Testing And Deployment</h3>
+                            <p class="card-text">Passion, commitment, and a
+                                lot of hard work.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="promo-section-02">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <div class="inner-text d-flex flex-column mb-3">
+                        <p>HAVE QUESTIONS?
+                        </p>
+                        <h1>Get free one-on-one Consultation </h1>
+                        <button type="button" class="btn btn-success
+                                custom-btn-01">Get
+                            In Touch</button>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <img src="./imgs/banner-image.jpg" class="card-img-mid" alt="...">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="promo-section-03">
+        <div  class="container-fluid text-center image-background">
+            <div class="main-flex">
+                <div class="card-body">
+                    <div id=imageBackground class="inner-chart">
+                       
+                    </div>
+                    <button id="calculateservice" >See Price Total</button>
+                </div>
+                <div class="inner-card">
+                    <form name="costcalculator">
+                     
+                        <div class="container-calc">
+                            <h1 id="header" ></h1>
+                          
+                          <div class="wrapper">
+                                <p>Select Functionalities</p>
+                                <select id="select" multiple>
+                                    <option selected disabled hidden>
+                                        Select
+                                    </option>
+                                    <option value="30000">
+                                        Online Table Reservations
+                                    </option>
+                                    <option value="30000">Online Ordering</option>
+                                    <option value="20000">Event Calender</option>
+                                    <option value="10000">Social Media Integration</option>
+                                    <option value="30000">Customised Food Picker</option>
+                                </select>
+
+                                <div class="eachSum eachSum-1">
+                                    <p>Amount</p>
+                                    <span id="total-1">0</span>₹
+                                </div>
+                                <p>Select Promotion materisls</p>
+
+                                <select id="select-2" multiple>
+                                    <option selected disabled hidden>
+                                        Select
+                                    </option>
+                                    <option value="20000">Specials & Upcoming Events</option>
+                                    <option value="20000">NewsLetter Sign up </option>
+                                    <option value="20000">Online Promotions Sections</option>
+                                    <option value="20000">Pop Ups</option>
+                                    <option value="20000">Promotional Videos</option>
+                                    <option value="20000">Premium Imagery</option>
+                                </select>
+                                <div class="eachSum eachSum-2">
+                                    <p> Amount</p>
+                                    <span id="total-2">0</span>₹
+                                </div>
+                                <p>Miscellaneous</p>
+                                <select id="select-3" multiple>
+                                    <option selected disabled hidden>
+                                        Select
+                                    </option>
+                                    <option value="30000">Seo Optmized Content For 6 months</option>
+                                    <option value="30000">Blogs for 6 months</option>
+                                    <option value="30000">Email Marketing For 6 months</option>
+                    
+                                </select>
+                                <div class="eachSum eachSum-3">
+                                    <p>Amount</p>
+                                    <span id="total-3">0</span>₹
+                                </div>
+                                <button type="button" id="calculate" class="btn btn-success custom-button">Calculate</button>
+                                
+                            </div> 
+
+                            <div class="tip">
+                                <p>Total Amount</p>
+                                <div id="total"></div>
+                                <div id="total-package"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+        </div>
+    </section>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+    <script src="./js/main.js"></script>
+
+</body>
+
+</html>
+<!-- Home About Us Gallery Testimonials Menu Contact Google analytics live chat responsive layout Reviews-->

@@ -1,0 +1,290 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,300&display=swap");
+
+/*******************************************Basic Styling********************************************/
+:root {
+  --primary: #ff0000;
+  --secondary: #ffa500;
+  --headings: #000000;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  background: aliceblue;
+}
+
+h2,
+h3,
+h4,
+h5 {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.header-section {
+  background-color: var(--secondary);
+  color: var(--primary);
+  height: 50px;
+  text-align: center;
+}
+
+section.brand-section {
+  background: #ffff;
+  text-align: center;
+}
+section.brand-section img {
+  width: 6%;
+}
+
+section.promo-section-01 {
+  margin-bottom: 15%;
+}
+section.promo-section-02 {
+  margin-bottom: 8%;
+}
+
+
+.header-image {
+  width: 100%;
+  height: 600px;
+  background: linear-gradient(rgb(52 30 30 / 60%), rgb(0 0 0 / 98%)),
+    url("../imgs/web-design-website-coding-concept.jpg") no-repeat;
+  background-size: cover;
+  background-position: right;
+  position: relative;
+}
+.custom-flex {
+  width: 60%;
+  position: relative;
+  top: 30%;
+  left: 10%;
+}
+.custom-flex p {
+  color: var(--secondary);
+}
+.custom-flex span {
+  color: var(--secondary);
+}
+
+.custom-button {
+  border-color: #ffff;
+  color: #ffff;
+}
+
+.custom-button-services {
+  position: relative;
+  left: 8%;
+}
+
+.custom-flex h1 {
+  color: #dbced8;
+  font-weight: 700;
+}
+.d-flex.flex-column.mb-3.custom-flex {
+  width: 30%;
+}
+
+.form {
+  padding: 5%;
+  margin-bottom: 3%;
+  position: absolute;
+  left: 57%;
+  top: 8%;
+  color: var(--primary);
+  background: #dfd5d5;
+  width: 40%;
+  border-radius: 20%;
+}
+.form-group-v {
+  margin-top: 3%;
+  text-align: left;
+}
+
+.form-group-v label {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+input#exampleInputName1 {
+  background: silver;
+}
+
+input#exampleInputEmail1 {
+  background: silver;
+}
+input#exampleInputPhone1 {
+  background: silver;
+}
+
+textarea#exampleInputMessage1 {
+  background: silver;
+}
+
+.custom-btn {
+  margin-top: 3%;
+  position: relative;
+  left: 40%;
+}
+.card-body.cartText {
+  position: absolute;
+  top: 40%;
+  color: var(--secondary);
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+img.card-img-top.csc {
+  background: linear-gradient(rgb(52 30 30 / 60%), rgb(0 0 0 / 98%));
+}
+
+img.card-img-top {
+  filter: brightness(20%);
+}
+
+.cartText h3 {
+  color: #dbced8;
+  font-size: calc(80% + 0.8vmin);
+}
+
+section.promo-section-02 {
+  background: #ffff;
+  margin-bottom: 5%;
+}
+
+.inner-text {
+  position: relative;
+  top: 30%;
+  width: 60%;
+  left: 3%;
+}
+
+.inner-text h1,
+p {
+  text-align: left;
+}
+
+img.card-img-mid {
+  width: 100%;
+  padding: 7%;
+}
+.image-background {
+  width: 100%;
+  max-height: 1000px;
+  height: 80%;
+  background: linear-gradient(rgb(52 30 30 / 60%), rgb(0 0 0 / 98%)),
+    url("../imgs/banner-image.jpg") no-repeat;
+  background-size: cover;
+  background-position: right;
+  position: relative;
+  display: flex;
+}
+
+.row-3-text {
+  color: #dbced8;
+  font-size: calc(80% + 0.8vmin);
+}
+.inner-chart {
+  color: #ffff;
+  /* width: 80%; */
+  text-align: left;
+  margin: 0 auto;
+}
+
+.main-flex {
+  display: flex;
+}
+
+/* calculator */
+.container-calc {
+  width: 350px;
+  background-color: #fff;
+  position: absolute;
+  left: 80%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 20px;
+}
+
+.container-calc h1 {
+  position: absolute;
+  left: 50%;
+  top: -60px;
+  width: 300px;
+  transform: translateX(-50%);
+  background-color: #ff851b;
+  color: #fff;
+  font-weight: 100;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  font-size: 18px;
+  text-align: center;
+  padding: 10px;
+}
+
+.wrapper {
+  padding: 20px;
+}
+
+input,
+select {
+  width: 80%;
+  border: none;
+  border-bottom: 1px solid #0074d9;
+  padding: 10px;
+}
+
+input:focus,
+select:focus {
+  border: 1px solid #0074d9;
+  outline: none;
+}
+
+select {
+  width: 88% !important;
+}
+
+button {
+  margin: 20px auto;
+  width: 150px;
+  height: 50px;
+  background-color: #39cccc;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+}
+
+.tip {
+  text-align: center;
+  font-size: 18px;
+  display: none;
+  text-align: center;
+}
+.tip p{
+  text-align: center;
+}
+.eachSum {
+  text-align: center;
+  font-size: calc(50% + 0.8vmin);
+}
+.eachSum p {
+  text-align: center;
+  margin-bottom: 0rem !important;
+}
+
+.eachSum-1 {
+  display: none;
+}
+.eachSum-2 {
+  display: none;
+}
+.eachSum-3 {
+  display: none;
+}
+.showSuccessMessage{
+  display: block;
+}
+
+.hideSuccessMessage{
+  display: none;
+}
