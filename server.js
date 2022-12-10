@@ -112,9 +112,12 @@ app.post("/serviceDetails", async (req, res) => {
   };
 
   req.body.arraySecodary.map((data) => {
-    data.label = truncate(data.label, 100);
+    data.label = truncate(data.label, 20);
     data.value = Number(data.value);
   });
+
+
+  console.log(req.body.arraySecodary);
   let createAttribute = new SibApiV3Sdk.CreateAttribute();
 
   let attributeCategory = "category";

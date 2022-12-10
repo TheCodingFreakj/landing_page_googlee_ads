@@ -417,18 +417,6 @@
 
     let extras = JSON.parse(localStorage.getItem("calculateextraServicePrice"));
     let services = JSON.parse(localStorage.getItem("calculateServicePrice"));
-
-    // const buildObject = (arr) => {
-    //   const obj = {};
-    //   for (let i = 0; i < arr.length; i++) {
-    //     const { service, price } = arr[i];
-    //     let formattedservice = service.split(" ").join("_");
-    //     obj[formattedservice] = price;
-    //   }
-
-    //   return obj;
-    // };
-
     var result = Object.keys(services).map((key) => {
       return {
         label: key,
@@ -449,8 +437,8 @@
     console.log(data);
 
     $.ajax({
-      url: "https://www.pallavipriya.online/serviceDetails",
-      //url: "http://localhost:9099/serviceDetails",
+      //url: "https://www.pallavipriya.online/serviceDetails",
+      url: "http://localhost:9099/serviceDetails",
       type: "POST",
       data: data,
       success: function (data) {
