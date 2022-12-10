@@ -3,8 +3,7 @@ import cors from "cors";
 import path from "path";
 import mailchimp from "@mailchimp/mailchimp_marketing";
 import client from "@mailchimp/mailchimp_marketing";
-import SibApiV3Sdk from "@sendinblue/client";
-import crypto from "crypto";
+import connection from "./db.js";
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -91,89 +90,26 @@ app.post("/add-contact", async (req, res) => {
   });
 });
 
-const apiInstance = new SibApiV3Sdk.ContactsApi();
-
-// Configure API key authorization: apiKey
-
-apiInstance.setApiKey(
-  SibApiV3Sdk.ContactsApiApiKeys.apiKey,
-  process.env.SENDINBLUE_KEY
-);
-
 app.post("/serviceDetails", async (req, res) => {
-  const truncate = (str, len) => {
-    if (str.length > len) {
-      if (len <= 3) {
-        return str.slice(0, len - 3) + "...";
-      } else {
-        return str.slice(0, len) + "...";
+  var serviceAdded = `INSERT INTO services (email, serviceData) VALUES(?,?)`;
+
+  connection.query(
+    serviceAdded,
+    [req.body.email, JSON.stringify(req.body.arraySecodary)],
+    (err) => {
+      if (err) {
+        console.log("error: ", err);
+        res.status(500).send({
+          message: "There is some unexpected error",
+        });
+        return;
       }
-    } else {
-      return str;
+
+      res.status(200).send({
+        message: "Thanks for showing interest. We will get back to you soon",
+      });
     }
-  };
-
-  function encode(str) {
-    return str.replace(/./g, function (c) {
-      return ("00" + c.charCodeAt(0)).slice(-3);
-    });
-  }
-
-  function decode(str) {
-    return str.replace(/.{3}/g, function (c) {
-      return String.fromCharCode(c);
-    });
-  }
-
-  let str = "";
-  req.body.arraySecodary.map((data) => {
-    data.label = truncate(data.label, 20);
-    str = encode(data.value);
-    data.value = Number(str);
-  });
-  console.log(decode(str));
-  console.log("uniques", req.body.arraySecodary);
-  let createAttribute = new SibApiV3Sdk.CreateAttribute();
-
-  let attributeCategory = "category";
-
-  let attributeName = "servicePrice";
-  createAttribute.enumeration = [];
-  createAttribute.enumeration = req.body.arraySecodary;
-  createAttribute.type = "category";
-
-  console.log(createAttribute);
-  apiInstance
-    .createAttribute(attributeCategory, attributeName, createAttribute)
-    .then(
-      function () {
-        console.log("API called successfully.");
-        let createContact = new SibApiV3Sdk.CreateContact();
-
-        console.log(req.body);
-        createContact.email = req.body.email;
-        createContact.attributes = createAttribute;
-        createContact.listIds = [35];
-
-        console.log(createContact);
-        apiInstance.createContact(createContact).then(
-          function (data) {
-            res.status(200).send({
-              message: "Thank You For Confirming The Services",
-            });
-          },
-          function (error) {
-            console.error(error);
-            res.status(500).send({
-              message: error,
-            });
-          }
-        );
-      },
-      function (error) {
-        console.error(error);
-      }
-    );
+  );
 });
 
 app.use(express.static(path.resolve(__dirname, "public")));
