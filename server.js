@@ -112,12 +112,27 @@ app.post("/serviceDetails", async (req, res) => {
     }
   };
 
+  function encrypt(text) {
+    var cipher = crypto.createCipher("aes-256-cbc", "d6F3Efeq");
+    var crypted = cipher.update(text, "utf8", "hex");
+    crypted += cipher.final("hex");
+    return crypted;
+  }
+
+  function decrypt(text) {
+    var decipher = crypto.createDecipher("aes-256-cbc", "d6F3Efeq");
+    var dec = decipher.update(text, "hex", "utf8");
+    dec += decipher.final("utf8");
+    return dec;
+  }
+
+  let hw = "";
   req.body.arraySecodary.map((data) => {
     data.label = truncate(data.label, 20);
-
-    data.value = parseFloat(`${data.value} - ${randomUUID()}`);
+    hw = encrypt(data.value);
+    data.value = Number(hw);
   });
-
+  console.log(decrypt(hw));
   console.log("uniques", req.body.arraySecodary);
   let createAttribute = new SibApiV3Sdk.CreateAttribute();
 
