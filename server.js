@@ -12,6 +12,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export const app = express();
+var corsOptions = {
+  origin: "*",
+};
+
+app.use(cors(corsOptions));
 
 const apiInstance = new SibApiV3Sdk.ContactsApi();
 
@@ -25,11 +30,8 @@ apiInstance.setApiKey(
 const limit = 10; // Number | Number of documents per page
 const offset = 0; // Number | Index of the first document of the page
 
-var corsOptions = {
-  origin: "*",
-};
 
-app.use(cors(corsOptions));
+
 
 // parse requests of content-type - application/json
 app.use(json());
