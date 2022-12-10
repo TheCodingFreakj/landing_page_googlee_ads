@@ -62,7 +62,7 @@ async function run() {
 
 run();
 
-app.post("/add-contact", async (req, res) => {
+app.post("/api/add-contact", async (req, res) => {
   const response = await client.lists.addListMember(
     "3f953a4f9e",
     {
@@ -86,7 +86,7 @@ app.post("/add-contact", async (req, res) => {
   });
 });
 
-app.post("/serviceDetails", async (req, res) => {
+app.post("/api/serviceDetails", async (req, res) => {
   const truncate = (str, len) => {
     if (str.length > len) {
       if (len <= 3) {
