@@ -113,11 +113,11 @@ app.post("/serviceDetails", async (req, res) => {
 
   req.body.arraySecodary.map((data) => {
     data.label = truncate(data.label, 20);
-    data.value = `${Number(data.value)}-${Date.now()}`;
+    data.value = `${Number(data.value)}-${Math.floor(Math.random() * 100)}`;
   });
 
 
-  console.log(req.body.arraySecodary);
+  console.log("uniques", req.body.arraySecodary);
   let createAttribute = new SibApiV3Sdk.CreateAttribute();
 
   let attributeCategory = "category";
