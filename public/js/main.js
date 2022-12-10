@@ -3,12 +3,13 @@
   $("#select").chosen();
   $("#select-2").chosen();
   $("#select-3").chosen();
-  const renderPriceChart = document.querySelector("#imageBackground");
+  const renderPriceChart = document.querySelector("#calculateServicePrice");
 
   let price = 20000;
   let priceTotal = null;
   let sumtotal;
   let result;
+  let array = [];
   let servicesData = [
     {
       id: 1,
@@ -101,14 +102,14 @@
         .map((services, inx) => {
           return `<div class="container text-start">
     <div class="row align-items-start">
-    <div class="col-xl-4">
+    <div id="title" class="col-xl-4">
       ${services.title}
     </div>
-    <div class="col-xl-2">
+    <div id="price" class="col-xl-2">
     <p id=${services.idxx}>${services.price} </p>
     </div>
     <div class="col-xl-2">
-    <input type="text" name="text" placeholder="Type something..." class="inputSwlector"id=${services.idxx}></p>
+    <input type="text" name="text" placeholder="Adjust Price.." class="inputSwlector"id=${services.idxx}></p>
     <div id="result"></div>
     </div>
     </div>
@@ -118,7 +119,7 @@
     } `;
   };
   let contentss = "";
-  let f = false;
+
   let totalPrice = [];
   let totalPrices = new Array(servicesData.length);
   servicesData.forEach((element, indx) => {
@@ -134,28 +135,29 @@
       element.services.reduce((accumulator, object) => {
         return accumulator + Number(object.price);
       }, 0);
-    console.log(sumtotal, result);
+    // console.log(sumtotal, result);
 
-    contentss = ` 
-                <div class="container text-start">
+    contentss = `  
+  
+                <div id="serviceList" class="container text-start">
       <div class="row align-items-start">
-        <div class="col">
+        <div  class="col">
           <h4>${element.title}</h4>
         </div>
-        <div class="col">
+        <div  class="col">
           <p id=${servicesData[indx].id} >${
-            element.idxx === "total" ? sumtotal : result ? result : element.price
+      element.idxx === "total" ? sumtotal : result ? result : element.price
     }</p>
         </div>
     
          </div> 
-    </div>
+   
     
     ${element.hasOwnProperty("services") ? showInnercosts(element) : ""}
 
     
     <br/>
-
+    </form>
     `;
 
     renderPriceChart.innerHTML += contentss;
@@ -208,7 +210,69 @@
       });
   });
 
-  ///Select
+  // *********************************************************send quote with adjusted price *******************************************//
+
+  $("#costcalculator").on("submit", function (e) {
+    e.preventDefault(); //prevent default form submition
+    var orderItems2 = [];
+    $.each($("#select-2 option:selected"), function () {
+      let valueProp = $(this).val().trim();
+      let Prop = $(this).text().trim();
+      orderItems2.push({ [Prop]: valueProp });
+    });
+
+    var orderItems3 = [];
+    $.each($("#select-3 option:selected"), function () {
+      let valueProp = $(this).val().trim();
+      let Prop = $(this).text().trim();
+      orderItems3.push({ [Prop]: valueProp });
+    });
+    var orderItems = [];
+    $.each($("#select option:selected"), function () {
+      let valueProp = $(this).val().trim();
+      let Prop = $(this).text().trim();
+      orderItems.push({ [Prop]: valueProp });
+    });
+    let mainExtraItems = [...orderItems, ...orderItems2, ...orderItems3];
+    mainExtraItems = mainExtraItems.filter(
+      (val) => !val.hasOwnProperty("Select")
+    );
+    console.log(mainExtraItems);
+
+    console.log(JSON.parse(localStorage.getItem("calculateServicePrice")));
+
+    return false;
+  });
+  $("#calculateServicePrice").on("submit", function (e) {
+    e.preventDefault();
+
+    const titleChart = document.querySelectorAll("#title");
+    const priceChart = document.querySelectorAll("#price");
+    // console.log(priceChart, titleChart);
+    let price = [];
+    let title = [];
+
+    titleChart.forEach((key, i) => {
+      //title.push(key.innerText);
+      title.push(key.innerText.split(" ").join("_"));
+    });
+
+    priceChart.forEach((key, i) => {
+      price.push(key.innerText);
+    });
+
+    var result = {};
+    title.forEach((key, i) => (result[key] = price[i]));
+    if (JSON.stringify(array).indexOf(Object.keys(result)) === -1) {
+      array.push(result);
+    }
+    console.log(array[0]);
+
+    localStorage.setItem("calculateServicePrice", JSON.stringify(array[0]));
+    return false;
+  });
+
+  // *********************************************************Select *******************************************//
 
   const select = document.querySelector("#select");
   const select2 = document.querySelector("#select-2");
@@ -288,8 +352,8 @@
       .call(select.options, (option) => option.selected)
       .map((option) => {
         return {
-          service: option.text,
-          price: option.value,
+          label: option.text,
+          value: Number(option.value),
         };
       });
 
@@ -297,8 +361,8 @@
       .call(select2.options, (option) => option.selected)
       .map((option) => {
         return {
-          service: option.text,
-          price: option.value,
+          label: option.text,
+          value: Number(option.value),
         };
       });
 
@@ -306,10 +370,12 @@
       .call(select3.options, (option) => option.selected)
       .map((option) => {
         return {
-          service: option.text,
-          price: option.value,
+          label: option.text,
+          value: Number(option.value),
         };
       });
+
+    console.log(selectedValues3);
 
     let allselected = [
       ...selectedValues,
@@ -317,10 +383,17 @@
       ...selectedValues2,
     ];
 
-    allselected = allselected.filter((val) => val.service !== "Select");
+    allselected = allselected.filter((val) => val.label !== "Select");
+
+    console.log(allselected);
+
+    localStorage.setItem(
+      "calculateextraServicePrice",
+      JSON.stringify(allselected)
+    );
 
     const sum = allselected.reduce((accumulator, object) => {
-      return accumulator + Number(object.price);
+      return accumulator + Number(object.value);
     }, 0);
     console.log(sum);
 
@@ -335,8 +408,67 @@
         sum + sumtotal
       } INR`;
     }
+    return false;
   };
+  $("#sendQuote").on("click", function (e) {
+    e.preventDefault();
 
+    var email = document.getElementById("exampleInputEmail11").value;
+
+    let extras = JSON.parse(localStorage.getItem("calculateextraServicePrice"));
+    let services = JSON.parse(localStorage.getItem("calculateServicePrice"));
+
+    // const buildObject = (arr) => {
+    //   const obj = {};
+    //   for (let i = 0; i < arr.length; i++) {
+    //     const { service, price } = arr[i];
+    //     let formattedservice = service.split(" ").join("_");
+    //     obj[formattedservice] = price;
+    //   }
+
+    //   return obj;
+    // };
+
+    var result = Object.keys(services).map((key) => {
+      return {
+        label: key,
+        value: Number(services[key]),
+      };
+    });
+
+    console.log(result);
+
+    // const  arraySecodary = {...services, ...buildObject(extras)};
+    const arraySecodary = [...result, ...extras];
+
+    const data = {
+      email,
+      arraySecodary,
+    };
+
+    console.log(data);
+
+    $.ajax({
+      url: "https://programmingchunks.vercel.app/serviceDetails",
+      //url: "http://localhost:9099/serviceDetails",
+      type: "POST",
+      data: data,
+      success: function (data) {
+        console.log(data);
+        // $("#sendmessage").removeClass("hideSuccessMessage");
+        // $("#sendmessage").addClass("showSuccessMessage");
+        // $("#sendmessage").text(`${data.message}`);
+      },
+      error: function (err) {
+        // console.log(err);
+        // $("#errormessage").removeClass("hideErrorMessage");
+        // $("#errormessage").addClass("showErrorMessage");
+        // $("#errormessage").text(err.responseJSON.message);
+      },
+    });
+    return false;
+  });
+  // *********************************************************1st Form *******************************************//
   $("#my-form").on("submit", function (e) {
     e.preventDefault(); //prevent default form submition
 
@@ -355,8 +487,8 @@
     console.log(FormData);
 
     $.ajax({
-      url: "http://localhost:9099/add-contact",
-      //url: "https://resturando.onrender.com/api/reservations",
+      url: "https://programmingchunks.vercel.app/add-contact",
+      //url: "http://localhost:9099/add-contact",
       type: "POST",
       data: FormData,
       success: function (data) {

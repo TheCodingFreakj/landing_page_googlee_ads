@@ -144,18 +144,24 @@
         <div  class="container-fluid text-center image-background">
             <div class="main-flex">
                 <div class="card-body">
-                    <div id=imageBackground class="inner-chart">
+                   
+                        <div id=imageBackground class="inner-chart">
+                            <form id="calculateServicePrice">    <button id="calculateservice">See Price Total</button> </div>
+                        </div>
+                    
                        
-                    </div>
-                    <button id="calculateservice" >See Price Total</button>
+                  
+         
                 </div>
                 <div class="inner-card">
-                    <form name="costcalculator">
+                    <form id="costcalculator" name="costcalculator">
                      
                         <div class="container-calc">
                             <h1 id="header" ></h1>
                           
                           <div class="wrapper">
+                            <p>Your Name</p>
+                            <input type="email" name="email"  id="exampleInputEmail11" placeholder="Email">
                                 <p>Select Functionalities</p>
                                 <select id="select" multiple>
                                     <option selected disabled hidden>
@@ -164,10 +170,10 @@
                                     <option value="30000">
                                         Online Table Reservations
                                     </option>
-                                    <option value="30000">Online Ordering</option>
-                                    <option value="20000">Event Calender</option>
-                                    <option value="10000">Social Media Integration</option>
-                                    <option value="30000">Customised Food Picker</option>
+                                    <option selectedTag="Online Ordering" value="30000">Online Ordering</option>
+                                    <option selectedTag="Event Calender" value="20000">Event Calender</option>
+                                    <option selectedTag ="Social Media Integration" value="10000">Social Media Integration</option>
+                                    <option selectedTag="Customised Food Picker" value="30000">Customised Food Picker</option>
                                 </select>
 
                                 <div class="eachSum eachSum-1">
@@ -206,7 +212,7 @@
                                     <span id="total-3">0</span>₹
                                 </div>
                                 <button type="button" id="calculate" class="btn btn-success custom-button">Calculate</button>
-                                
+                                <button type="button" id="sendQuote" class="btn btn-success custom-button">Send Quote</button>
                             </div> 
 
                             <div class="tip">

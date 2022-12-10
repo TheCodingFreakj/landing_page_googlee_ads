@@ -3,6 +3,7 @@ import cors from "cors";
 import path from "path";
 import mailchimp from "@mailchimp/mailchimp_marketing";
 import client from "@mailchimp/mailchimp_marketing";
+import SibApiV3Sdk from "@sendinblue/client";
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -11,6 +12,18 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export const app = express();
+
+const apiInstance = new SibApiV3Sdk.ContactsApi();
+
+// Configure API key authorization: apiKey
+
+apiInstance.setApiKey(
+  SibApiV3Sdk.ContactsApiApiKeys.apiKey,
+  process.env.SENDINBLUE_KEY
+);
+
+const limit = 10; // Number | Number of documents per page
+const offset = 0; // Number | Index of the first document of the page
 
 var corsOptions = {
   origin: "*",
@@ -37,7 +50,6 @@ async function run() {
 run();
 
 app.post("/add-contact", async (req, res) => {
-  
   const response = await client.lists.addListMember(
     "3f953a4f9e",
     {
@@ -59,6 +71,66 @@ app.post("/add-contact", async (req, res) => {
   res.status(200).send({
     message: "Thank You For Registering a discovery call with me",
   });
+});
+
+app.post("/serviceDetails", async (req, res) => {
+  const truncate = (str, len) => {
+    if (str.length > len) {
+      if (len <= 3) {
+        return str.slice(0, len - 3) + "...";
+      } else {
+        return str.slice(0, len) + "...";
+      }
+    } else {
+      return str;
+    }
+  };
+
+  req.body.arraySecodary.map((data) => {
+    data.label = truncate(data.label, 100);
+    data.value = Number(data.value);
+  });
+  let createAttribute = new SibApiV3Sdk.CreateAttribute();
+
+  let attributeCategory = "category";
+
+  let attributeName = "servicePrice";
+  createAttribute.enumeration = [];
+  createAttribute.enumeration = req.body.arraySecodary;
+  createAttribute.type = "category";
+
+  console.log(createAttribute);
+  apiInstance
+    .createAttribute(attributeCategory, attributeName, createAttribute)
+    .then(
+      function () {
+        console.log("API called successfully.");
+        let createContact = new SibApiV3Sdk.CreateContact();
+
+        console.log(req.body);
+        createContact.email = req.body.email;
+        createContact.attributes = createAttribute;
+        createContact.listIds = [35];
+
+        console.log(createContact);
+        apiInstance.createContact(createContact).then(
+          function (data) {
+            res.status(200).send({
+              message: "Thank You For Confirming The Services",
+            });
+          },
+          function (error) {
+            console.error(error);
+            res.status(500).send({
+              message: error,
+            });
+          }
+        );
+      },
+      function (error) {
+        console.error(error);
+      }
+    );
 });
 
 app.use(express.static(path.resolve(__dirname, "public")));
