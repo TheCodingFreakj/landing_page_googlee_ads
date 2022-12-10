@@ -18,31 +18,33 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 
+const whitelist = ["*"];
 
 app.use((req, res, next) => {
-  res.set({
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "*",
-      "Access-Control-Allow-Headers": "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",
-  });
-
-  next();
+  const origin = req.get("referer");
+  const isWhitelisted = whitelist.find((w) => origin && origin.includes(w));
+  if (isWhitelisted) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader(
+      "Access-Control-Allow-Methods",
+      "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+    );
+    res.setHeader(
+      "Access-Control-Allow-Headers",
+      "X-Requested-With,Content-Type,Authorization"
+    );
+    res.setHeader("Access-Control-Allow-Credentials", true);
+  }
+  // Pass to next layer of middleware
+  if (req.method === "OPTIONS") res.sendStatus(200);
+  else next();
 });
 
-const apiInstance = new SibApiV3Sdk.ContactsApi();
-
-// Configure API key authorization: apiKey
-
-apiInstance.setApiKey(
-  SibApiV3Sdk.ContactsApiApiKeys.apiKey,
-  process.env.SENDINBLUE_KEY
-);
-
-const limit = 10; // Number | Number of documents per page
-const offset = 0; // Number | Index of the first document of the page
-
-
-
+const setContext = (req, res, next) => {
+  if (!req.context) req.context = {};
+  next();
+};
+app.use(setContext);
 
 // parse requests of content-type - application/json
 app.use(json());
@@ -62,7 +64,8 @@ async function run() {
 
 run();
 
-app.post("/api/add-contact", async (req, res) => {
+app.post("/add-contact", async (req, res) => {
+  console.log("hvhvh");
   const response = await client.lists.addListMember(
     "3f953a4f9e",
     {
@@ -86,7 +89,16 @@ app.post("/api/add-contact", async (req, res) => {
   });
 });
 
-app.post("/api/serviceDetails", async (req, res) => {
+const apiInstance = new SibApiV3Sdk.ContactsApi();
+
+// Configure API key authorization: apiKey
+
+apiInstance.setApiKey(
+  SibApiV3Sdk.ContactsApiApiKeys.apiKey,
+  process.env.SENDINBLUE_KEY
+);
+
+app.post("/serviceDetails", async (req, res) => {
   const truncate = (str, len) => {
     if (str.length > len) {
       if (len <= 3) {
