@@ -8,6 +8,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 import { fileURLToPath } from "url";
+import { randomUUID } from "crypto";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -113,9 +114,9 @@ app.post("/serviceDetails", async (req, res) => {
 
   req.body.arraySecodary.map((data) => {
     data.label = truncate(data.label, 20);
-    data.value = `${Number(data.value)}-${Math.floor(Math.random() * 100)}`;
-  });
 
+    data.value = parseFloat(`${data.value} - ${randomUUID()}`);
+  });
 
   console.log("uniques", req.body.arraySecodary);
   let createAttribute = new SibApiV3Sdk.CreateAttribute();
