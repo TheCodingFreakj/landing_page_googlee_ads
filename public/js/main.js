@@ -109,7 +109,7 @@
     <p id=${services.idxx}>${services.price} </p>
     </div>
     <div class="col-xl-2">
-    <input type="text" name="text" placeholder="Adjust Price.." class="inputSwlector"id=${services.idxx}></p>
+    <input type="text" name="text" placeholder="Adjust Price.."  class="inputSwlector"id=${services.idxx}></p>
     <div id="result"></div>
     </div>
     </div>
@@ -170,7 +170,7 @@
           if (`${e.idxx}` == $(this).attr("id")) {
             document.getElementById(`${e.idxx}`).innerHTML = $(this).val();
             e.price = $(this).val();
-
+            console.log($(this).val());
             result =
               element !== undefined &&
               element.reduce((accumulator, object) => {
@@ -424,8 +424,6 @@
       };
     });
 
-    console.log(result);
-
     // const  arraySecodary = {...services, ...buildObject(extras)};
     const arraySecodary = [...result, ...extras];
 
@@ -434,11 +432,9 @@
       arraySecodary,
     };
 
-    console.log(data);
-
     $.ajax({
-      url: "https://www.pallavipriya.online/serviceDetails",
-      // url: "http://localhost:9099/serviceDetails",
+      //url: "https://www.pallavipriya.online/serviceDetails",
+      url: "http://localhost:9099/serviceDetails",
       type: "POST",
       data: data,
       success: function (data) {
@@ -494,5 +490,11 @@
     });
 
     return false;
+  });
+
+  $("#reset").on("click", function (e) {
+    localStorage.removeItem("calculateServicePrice");
+    localStorage.removeItem("calculateextraServicePrice");
+    location.reload(true)
   });
 })(jQuery);

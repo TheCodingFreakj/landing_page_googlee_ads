@@ -75,7 +75,18 @@ section.promo-section-02 {
   position: relative;
   left: 8%;
 }
-
+.custom-button-services a {
+  text-decoration: none;
+  color: #ffff;
+}
+.custom-button a{
+  text-decoration: none;
+  color: #ffff;
+}
+.custom-btn-01 a{
+  text-decoration: none;
+  color: #ffff;
+}
 .custom-flex h1 {
   color: #dbced8;
   font-weight: 700;
@@ -242,12 +253,44 @@ select:focus {
 select {
   width: 88% !important;
 }
-
-button {
+button#sendQuote {
   margin: 20px auto;
   width: 150px;
   height: 50px;
-  background-color: #39cccc;
+  background-color: #157347;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+}
+
+button#calculate {
+  margin: 20px auto;
+  width: 150px;
+  height: 50px;
+  background-color: #157347;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+}
+
+button#calculateservice {
+  margin: 20px auto;
+  width: 150px;
+  height: 50px;
+  background-color: #157347;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+}
+
+button#reset {
+  margin: 20px auto;
+  width: 150px;
+  height: 50px;
+  background-color: #157347;
   color: #fff;
   font-size: 16px;
   border: none;
@@ -287,4 +330,8 @@ button {
 
 .hideSuccessMessage{
   display: none;
+}
+
+.button-area{
+  display: flex;
 }
