@@ -449,7 +449,7 @@
     console.log(data);
 
     $.ajax({
-      url: "https://programmingchunks.vercel.app/serviceDetails",
+      url: "https://www.pallavipriya.online/serviceDetails",
       //url: "http://localhost:9099/serviceDetails",
       type: "POST",
       data: data,
@@ -487,7 +487,7 @@
     console.log(FormData);
 
     $.ajax({
-      url: "https://programmingchunks.vercel.app/add-contact",
+      url: "https://www.pallavipriya.online/add-contact",
       //url: "http://localhost:9099/add-contact",
       type: "POST",
       data: FormData,
