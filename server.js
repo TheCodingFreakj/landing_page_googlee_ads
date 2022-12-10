@@ -4,11 +4,12 @@ import path from "path";
 import mailchimp from "@mailchimp/mailchimp_marketing";
 import client from "@mailchimp/mailchimp_marketing";
 import SibApiV3Sdk from "@sendinblue/client";
+import crypto from "crypto";
 import * as dotenv from "dotenv";
 dotenv.config();
 
 import { fileURLToPath } from "url";
-import { randomUUID } from "crypto";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
