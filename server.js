@@ -113,7 +113,7 @@ app.post("/serviceDetails", async (req, res) => {
 
   req.body.arraySecodary.map((data) => {
     data.label = truncate(data.label, 20);
-    data.value = Number(data.value);
+    data.value = `${Number(data.value)}-${Date.now()}`;
   });
 
 
