@@ -3,7 +3,9 @@
   $("#select").chosen();
   $("#select-2").chosen();
   $("#select-3").chosen();
-  const renderPriceChart = document.querySelector("#calculateServicePrice");
+  const renderPriceChart = document.querySelector(
+    "#calculatedefaultServicePrice"
+  );
 
   let price = 20000;
   let priceTotal = null;
@@ -119,7 +121,7 @@
     } `;
   };
   let contentss = "";
-
+  let contentsss = "";
   let totalPrice = [];
   let totalPrices = new Array(servicesData.length);
   servicesData.forEach((element, indx) => {
@@ -138,7 +140,7 @@
     // console.log(sumtotal, result);
 
     contentss = `  
-  
+   
                 <div id="serviceList" class="container text-start">
       <div class="row align-items-start">
         <div  class="col-xl-6 col-md-12 main-header">
@@ -157,11 +159,18 @@
 
     
     <br/>
-    </form>
+   
     `;
 
     renderPriceChart.innerHTML += contentss;
   });
+
+  contentsss = `   <button id="calculateservice">See Price Total</button>
+  <button id="reset">Reset All</button>
+   
+    `;
+
+  renderPriceChart.innerHTML += contentsss;
 
   $('input[name="text"]').on("input", function () {
     services !== undefined &&
@@ -239,13 +248,13 @@
     );
     console.log(mainExtraItems);
 
-    console.log(JSON.parse(localStorage.getItem("calculateServicePrice")));
+    console.log(JSON.parse(localStorage.getItem("defaultServicePrice")));
 
     return false;
   });
-  $("#calculateServicePrice").on("submit", function (e) {
+  $("#calculatedefaultServicePrice").on("submit", function (e) {
     e.preventDefault();
-
+    console.log("hg");
     const titleChart = document.querySelectorAll("#title");
     const priceChart = document.querySelectorAll("#price");
     // console.log(priceChart, titleChart);
@@ -268,7 +277,14 @@
     }
     console.log(array[0]);
 
-    localStorage.setItem("calculateServicePrice", JSON.stringify(array[0]));
+    localStorage.setItem("defaultServicePrice", JSON.stringify(array[0]));
+
+    $("#sendQuote").prop("disabled", false);
+    $("#calculate").prop("disabled", false);
+
+    $("#sendQuote").prop("disabled", false);
+    $("#calculate").prop("disabled", false);
+
     return false;
   });
 
@@ -320,6 +336,7 @@
       document.querySelector("#total-2").innerHTML = sumpromos;
     }
   };
+ 
 
   select3.onchange = () => {
     const selectedValues3 = [].filter
@@ -410,14 +427,27 @@
     }
     return false;
   };
+
+  if (JSON.parse(localStorage.getItem("defaultServicePrice")) == undefined) {
+    $("#sendQuote").prop("disabled", true);
+    $("#calculate").prop("disabled", true);
+  }
+
+  if (JSON.parse(localStorage.getItem("defaultServicePrice")) == null) {
+    $("#sendQuote").prop("disabled", true);
+    $("#calculate").prop("disabled", true);
+  }
+
   $("#sendQuote").on("click", function (e) {
     e.preventDefault();
 
     var email = document.getElementById("exampleInputEmail11").value;
+    var result;
+    let extras =
+      JSON.parse(localStorage.getItem("calculateextraServicePrice")) || [];
+    let services = JSON.parse(localStorage.getItem("defaultServicePrice"));
 
-    let extras = JSON.parse(localStorage.getItem("calculateextraServicePrice"));
-    let services = JSON.parse(localStorage.getItem("calculateServicePrice"));
-    var result = Object.keys(services).map((key) => {
+    result = Object.keys(services).map((key) => {
       return {
         label: key,
         value: Number(services[key]),
@@ -439,15 +469,35 @@
       data: data,
       success: function (data) {
         console.log(data);
-        // $("#sendmessage").removeClass("hideSuccessMessage");
-        // $("#sendmessage").addClass("showSuccessMessage");
-        // $("#sendmessage").text(`${data.message}`);
+        
+        localStorage.removeItem("defaultServicePrice");
+        localStorage.removeItem("calculateextraServicePrice");
+        $("#sendQuote").prop("disabled", true);
+        $("#calculate").prop("disabled", true);
+        $("#ssendmessage").removeClass("hhideSuccessMessage");
+        $("#ssendmessage").addClass("sshowSuccessMessage");
+        $("#ssendmessage").text(`${data.message}`);
+
+        setTimeout(() => {
+          $("#ssendmessage").removeClass("sshowSuccessMessage");
+          $("#ssendmessage").addClass("hhideSuccessMessage");
+        }, [3000]);
       },
       error: function (err) {
-        // console.log(err);
-        // $("#errormessage").removeClass("hideErrorMessage");
-        // $("#errormessage").addClass("showErrorMessage");
-        // $("#errormessage").text(err.responseJSON.message);
+        console.log(err);
+
+        localStorage.removeItem("defaultServicePrice");
+        localStorage.removeItem("calculateextraServicePrice");
+        $("#sendQuote").prop("disabled", true);
+        $("#calculate").prop("disabled", true);
+        $("#eerrormessage").removeClass("hhiderrorMessage");
+        $("#eerrormessage").addClass("sshowErrorMessage");
+        $("#eerrormessage").text(`Something Unexpected Happened! Try Again!`);
+        setTimeout(() => {
+          //document.getElementById("sendmessage").innerHTML = "";
+          $("#eerrormessage").removeClass("sshowErrorMessage");
+          $("#eerrormessage").addClass("hhiderrorMessage");
+        }, [3000]);
       },
     });
     return false;
@@ -476,16 +526,31 @@
       type: "POST",
       data: FormData,
       success: function (data) {
-        console.log(data);
+        $("#my-form").find('input[name="email"]').val('');
+        $("#my-form").find('input[name="name"]').val('');
+        $("#my-form").find('input[name="phone"]').val('');
+        $("#my-form").find('textarea[name="message"]').val('');
         $("#sendmessage").removeClass("hideSuccessMessage");
         $("#sendmessage").addClass("showSuccessMessage");
         $("#sendmessage").text(`${data.message}`);
+
+        setTimeout(() => {
+          $("#sendmessage").removeClass("showSuccessMessage");
+          $("#sendmessage").addClass("hideSuccessMessage");
+        }, [3000]);
       },
       error: function (err) {
-        // console.log(err);
-        // $("#errormessage").removeClass("hideErrorMessage");
-        // $("#errormessage").addClass("showErrorMessage");
-        // $("#errormessage").text(err.responseJSON.message);
+        $("#my-form").find('input[name="email"]').val('');
+        $("#my-form").find('input[name="name"]').val('');
+        $("#my-form").find('input[name="phone"]').val('');
+        $("#my-form").find('textarea[name="message"]').val('');
+        $("#errormessage").removeClass("hiderrorMessage");
+        $("#errormessage").addClass("showErrorMessage");
+        $("#errormessage").text(`Something Unexpected Happened! Try Again!`);
+        setTimeout(() => {
+          $("#errormessage").removeClass("showErrorMessage");
+          $("#errormessage").addClass("hiderrorMessage");
+        }, [3000]);
       },
     });
 
@@ -493,11 +558,10 @@
   });
 
   $("#reset").on("click", function (e) {
-    localStorage.removeItem("calculateServicePrice");
+    localStorage.removeItem("defaultServicePrice");
     localStorage.removeItem("calculateextraServicePrice");
     location.reload(true);
   });
-
 
   function fadeOutEffect() {
     $("#headslide").addClass("headslide");
@@ -507,7 +571,59 @@
     fadeOutEffect();
   }, 2000);
 
-  setTimeout(function() {
+  setTimeout(function () {
     $("#headslide").removeClass("headslide");
-}, 1000);
+  }, 1000);
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var lazyloadImages;
+
+    if ("IntersectionObserver" in window) {
+      lazyloadImages = document.querySelectorAll(".lazy");
+      var imageObserver = new IntersectionObserver(function (
+        entries,
+        observer
+      ) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var image = entry.target;
+            image.classList.remove("lazy");
+            imageObserver.unobserve(image);
+          }
+        });
+      });
+
+      lazyloadImages.forEach(function (image) {
+        imageObserver.observe(image);
+      });
+    } else {
+      var lazyloadThrottleTimeout;
+      lazyloadImages = document.querySelectorAll(".lazy");
+
+      function lazyload() {
+        if (lazyloadThrottleTimeout) {
+          clearTimeout(lazyloadThrottleTimeout);
+        }
+
+        lazyloadThrottleTimeout = setTimeout(function () {
+          var scrollTop = window.pageYOffset;
+          lazyloadImages.forEach(function (img) {
+            if (img.offsetTop < window.innerHeight + scrollTop) {
+              img.src = img.dataset.src;
+              img.classList.remove("lazy");
+            }
+          });
+          if (lazyloadImages.length == 0) {
+            document.removeEventListener("scroll", lazyload);
+            window.removeEventListener("resize", lazyload);
+            window.removeEventListener("orientationChange", lazyload);
+          }
+        }, 20);
+      }
+
+      document.addEventListener("scroll", lazyload);
+      window.addEventListener("resize", lazyload);
+      window.addEventListener("orientationChange", lazyload);
+    }
+  });
 })(jQuery);

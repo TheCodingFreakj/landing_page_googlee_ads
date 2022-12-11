@@ -129,11 +129,15 @@ input#exampleInputPhone1 {
 textarea#exampleInputMessage1 {
   background: silver;
 }
+.para{
+  text-align: center;
+  padding: 2%;
+}
 
 .custom-btn {
   margin-top: 3%;
   position: relative;
-  left: 40%;
+  left: 30%;
 }
 .card-body.cartText {
   position: absolute;
@@ -149,6 +153,7 @@ img.card-img-top.csc {
 
 img.card-img-top {
   filter: brightness(20%);
+  height: 190px;
 }
 
 .cartText h3 {
@@ -182,7 +187,7 @@ img.card-img-mid {
   max-height: 1000px;
   height: 80%;
   background: linear-gradient(rgb(52 30 30 / 60%), rgb(0 0 0 / 98%)),
-    url("../imgs/banner-image.jpg") no-repeat;
+    url("https://ik.imagekit.io/vi9aepz6c/landing_Page/banner-image.jpg") no-repeat;
   background-size: cover;
   background-position: right;
   position: relative;
@@ -331,6 +336,28 @@ button#reset {
   display: none;
 }
 
+.showErrorMessage {
+  display: block;
+}
+
+.hiderrorMessage {
+  display: none;
+}
+.sshowSuccessMessage {
+  display: block;
+}
+
+.hhideSuccessMessage {
+  display: none;
+}
+
+.sshowErrorMessage {
+  display: block;
+}
+
+.hhiderrorMessage {
+  display: none;
+}
 .button-area {
   display: flex;
 }
@@ -367,6 +394,12 @@ button#reset {
   100% {
     transform: translateX(0);
   }
+}
+
+footer{
+  background: #000000;
+  color: #ff851b;
+  text-align: center;
 }
 @media (max-width: 575.98px) {
   body {

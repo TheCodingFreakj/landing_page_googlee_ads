@@ -91,6 +91,11 @@ app.post("/add-contact", async (req, res) => {
 });
 
 app.post("/serviceDetails", async (req, res) => {
+  if (req.body.email === "") {
+   return  res.status(200).send({
+      message: "Please send your email even if you dont want custom services!",
+    });
+  }
   var serviceAdded = `INSERT INTO services (email, serviceData) VALUES(?,?)`;
 
   connection.query(

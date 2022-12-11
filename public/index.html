@@ -18,23 +18,20 @@
 
     <section id="header-section" class="header-section">
         <div id="headslide" class="headslide">
-         
-
                     <span class="content-margin">
                         30 % off on referral
                     </span>
-              
         </div>
 
     </section>
 
     <section class="brand-section">
-        <img src="https://ik.imagekit.io/vi9aepz6c/landing_Page/company-logo.png" alt="company-logo" />
+        <img class="lazy" src="https://ik.imagekit.io/vi9aepz6c/landing_Page/company-logo.png" alt="company-logo" />
 
     </section>
 
     <section class="promo-section-01">
-        <div class="container-fluid header-image">
+        <div class="container-fluid header-image lazy">
             <div class="d-xl-flex flex-column  mb-3 custom-flex">
                 <div>
                     <span>Pixels with purpose</span>
@@ -47,8 +44,8 @@
                         alternatives
                     </p>
                 </div>
-                <div class="d-flex align-items-stretch"> <button type="button" class="btn btn-success custom-button"><a
-                            href="https://programmingchunks.tech/blog/">Know More</a></button>
+                <div class="d-flex align-items-stretch"> <button id= "routeToWindow" type="button" class="btn btn-success custom-button"><a
+                    id= "routeToWindow"  href="https://programmingchunks.tech/blog/" target="_blank">Know More</a></button>
                     <button type="button" class="btn btn-outline-success
                             custom-button custom-button-services"><a href="#calculateServicePrice">See
                             Services</a></button>
@@ -75,13 +72,12 @@
 
                     <div class="form-group-v">
                         <label for="exampleInputMessage1">Your Message</label>
-                        <textarea name="message" class="form-control" id="exampleInputMessage1" placeholder="Your
-                                Message" rows="5" cols="33">
+                        <textarea name="message" class="form-control" id="exampleInputMessage1"  rows="5" cols="33">
 
                             </textarea>
                     </div>
                     <div id="sendmessage" class="btn btn-success custom-style-btn hideSuccessMessage"></div>
-
+                    <div id="errormessage" class="btn btn-danger custom-style-btn hiderrorMessage"></div>
                     <button type="submit" class="btn btn-success custom-btn">Get
                         Quote</button>
                 </form>
@@ -97,8 +93,8 @@
             <div class="row align-items-stretch">
                 <div class="col-xl-4 col-md-4 col-sm-12">
                     <div class="card">
-                        <img src="https://ik.imagekit.io/vi9aepz6c/landing_Page/web-design-website-coding-concept.jpg"
-                            class="card-img-top" alt="...">
+                        <img src="https://ik.imagekit.io/vi9aepz6c/landing_Page/macbook-g4df403466_1280.jpg"
+                            class="card-img-top lazy" alt="...">
                         <div class="card-body cartText">
                             <h3>Web Design</h3>
                             <p class="card-text">Creative, flexible and
@@ -108,8 +104,8 @@
                 </div>
                 <div class="col-xl-4 col-md-4 col-sm-12">
                     <div class="card">
-                        <img src="https://ik.imagekit.io/vi9aepz6c/landing_Page/web-design-website-coding-concept.jpg"
-                            class="card-img-top" alt="...">
+                        <img src="https://ik.imagekit.io/vi9aepz6c/landing_Page/18824957.jpg"
+                            class="card-img-top lazy" alt="...">
                         <div class="card-body cartText">
                             <h3>Web Development</h3>
                             <p class="card-text">The goal isn't to build a
@@ -119,8 +115,8 @@
                 </div>
                 <div class="col-xl-4 col-md-4 col-sm-12">
                     <div class="card">
-                        <img src="https://ik.imagekit.io/vi9aepz6c/landing_Page/web-design-website-coding-concept.jpg"
-                            class="card-img-top" alt="...">
+                        <img src="https://ik.imagekit.io/vi9aepz6c/landing_Page/5817157.jpg"
+                            class="card-img-top lazy" alt="...">
                         <div class="card-body cartText">
                             <h3>Testing And Deployment</h3>
                             <p class="card-text">Passion, commitment, and a
@@ -145,10 +141,10 @@
                                 custom-btn-01"> <a href="#my-form">Get
                                 In Touch</a></button>
                     </div>
-
+                    
                 </div>
                 <div class="col-xl-6 col-sm-12">
-                    <img src="https://ik.imagekit.io/vi9aepz6c/landing_Page/banner-image.jpg" class="card-img-mid"
+                    <img src="https://ik.imagekit.io/vi9aepz6c/landing_Page/21034578.jpg" class="card-img-mid" lazy
                         alt="...">
                 </div>
             </div>
@@ -156,15 +152,14 @@
     </section>
 
     <section class="promo-section-03">
-        <div class="container-fluid text-center image-background">
+        <div class="container-fluid text-center image-background lazy">
             <div class="main-flex">
                 <div class="card-body">
 
                     <div id=calculateServicePrice class="inner-chart">
-                        <form id="calculateServicePrice">
+                        <form id="calculatedefaultServicePrice"></form>
                     </div>
-                    <button id="calculateservice">See Price Total</button>
-                    <button id="reset">Reset All</button>
+                   
                 </div>
 
             </div>
@@ -172,6 +167,7 @@
                 <form id="costcalculator" name="costcalculator">
 
                     <div class="container-calc">
+                        <p class="para">Calculate Default Rates Before sending quote</p>
                         <h1 id="header"></h1>
 
                         <div class="wrapper">
@@ -182,14 +178,14 @@
                                 <option selected disabled hidden>
                                     Select
                                 </option>
-                                <option value="30000">
+                                <option value="5000">
                                     Online Table Reservations
                                 </option>
-                                <option selectedTag="Online Ordering" value="30000">Online Ordering</option>
-                                <option selectedTag="Event Calender" value="20000">Event Calender</option>
-                                <option selectedTag="Social Media Integration" value="10000">Social Media Integration
+                                <option selectedTag="Online Ordering" value="7000">Online Ordering</option>
+                                <option selectedTag="Event Calender" value="1000">Event Calender</option>
+                                <option selectedTag="Social Media Integration" value="1000">Social Media Integration
                                 </option>
-                                <option selectedTag="Customised Food Picker" value="30000">Customised Food Picker
+                                <option selectedTag="Customised Food Picker" value="5000">Customised Food Picker
                                 </option>
                             </select>
 
@@ -197,18 +193,18 @@
                                 <p>Amount</p>
                                 <span id="total-1">0</span>₹
                             </div>
-                            <p>Select Promotion materisls</p>
+                            <p>Select Promotion Materials</p>
 
                             <select id="select-2" multiple>
                                 <option selected disabled hidden>
                                     Select
                                 </option>
-                                <option value="20000">Specials & Upcoming Events</option>
-                                <option value="20000">NewsLetter Sign up </option>
-                                <option value="20000">Online Promotions Sections</option>
-                                <option value="20000">Pop Ups</option>
-                                <option value="20000">Promotional Videos</option>
-                                <option value="20000">Premium Imagery</option>
+                                <option value="1000">Specials & Upcoming Events</option>
+                                <option value="3000">NewsLetter Sign up </option>
+                                <option value="10000">Online Promotions Sections</option>
+                                <option value="3000">Pop Ups</option>
+                                <option value="10000">Promotional Videos</option>
+                                <option value="2000">Premium Imagery</option>
                             </select>
                             <div class="eachSum eachSum-2">
                                 <p> Amount</p>
@@ -219,8 +215,8 @@
                                 <option selected disabled hidden>
                                     Select
                                 </option>
-                                <option value="30000">Seo Optmized Content For 6 months</option>
-                                <option value="30000">Blogs for 6 months</option>
+                                <option value="60000">Seo Optmized Content For 6 months</option>
+                                <option value="60000">Blogs for 6 months</option>
                                 <option value="30000">Email Marketing For 6 months</option>
 
                             </select>
@@ -234,7 +230,8 @@
                                 <button type="button" id="sendQuote" class="btn btn-success custom-button">Send
                                     Quote</button>
                             </div>
-
+                            <div id="ssendmessage" class="btn btn-success custom-style-btn hhideSuccessMessage"></div>
+                            <div id="eerrormessage" class="btn btn-danger custom-style-btn hhiderrorMessage"></div>
                         </div>
 
                         <div class="tip">
@@ -251,7 +248,7 @@
         </div>
         </div>
     </section>
-
+<footer>Copyright Reserved @ 2023 | Made By Programming Chunks</footer>
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
