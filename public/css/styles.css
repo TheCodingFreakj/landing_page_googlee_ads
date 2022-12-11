@@ -89,6 +89,7 @@ section.promo-section-02 {
 .custom-flex h1 {
   color: #dbced8;
   font-weight: 700;
+  width: 80%;
 }
 .d-flex.flex-column.mb-3.custom-flex {
   width: 30%;
