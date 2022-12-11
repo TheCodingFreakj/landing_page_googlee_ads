@@ -141,7 +141,7 @@
   
                 <div id="serviceList" class="container text-start">
       <div class="row align-items-start">
-        <div  class="col">
+        <div  class="col-xl-6 col-md-12 main-header">
           <h4>${element.title}</h4>
         </div>
         <div  class="col">
@@ -495,6 +495,19 @@
   $("#reset").on("click", function (e) {
     localStorage.removeItem("calculateServicePrice");
     localStorage.removeItem("calculateextraServicePrice");
-    location.reload(true)
+    location.reload(true);
   });
+
+
+  function fadeOutEffect() {
+    $("#headslide").addClass("headslide");
+  }
+
+  setInterval(function () {
+    fadeOutEffect();
+  }, 2000);
+
+  setTimeout(function() {
+    $("#headslide").removeClass("headslide");
+}, 1000);
 })(jQuery);

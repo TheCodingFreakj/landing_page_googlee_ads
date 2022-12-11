@@ -43,7 +43,6 @@ section.promo-section-02 {
   margin-bottom: 8%;
 }
 
-
 .header-image {
   width: 100%;
   height: 600px;
@@ -79,11 +78,11 @@ section.promo-section-02 {
   text-decoration: none;
   color: #ffff;
 }
-.custom-button a{
+.custom-button a {
   text-decoration: none;
   color: #ffff;
 }
-.custom-btn-01 a{
+.custom-btn-01 a {
   text-decoration: none;
   color: #ffff;
 }
@@ -303,7 +302,7 @@ button#reset {
   display: none;
   text-align: center;
 }
-.tip p{
+.tip p {
   text-align: center;
 }
 .eachSum {
@@ -324,14 +323,152 @@ button#reset {
 .eachSum-3 {
   display: none;
 }
-.showSuccessMessage{
+.showSuccessMessage {
   display: block;
 }
 
-.hideSuccessMessage{
+.hideSuccessMessage {
   display: none;
 }
 
-.button-area{
+.button-area {
   display: flex;
+}
+
+#headslide {
+  width: 100%;
+  height: 40px;
+  background: rgb(7, 36, 18);
+  color: #ff851b;
+  -webkit-animation: slideIn 2s forwards;
+  -moz-animation: slideIn 2s forwards;
+  animation: slideIn 2s forwards;
+}
+@-webkit-keyframes slideIn {
+  0% {
+    transform: translateX(-900px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@-moz-keyframes slideIn {
+  0% {
+    transform: translateX(-900px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes slideIn {
+  0% {
+    transform: translateX(-900px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@media (max-width: 575.98px) {
+  body {
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    background: aliceblue;
+  }
+  form#my-form {
+    position: relative;
+    top: 220px;
+    width: 100%;
+    left: 0%;
+  }
+
+  .form-group-v label {
+    font-size: 15px;
+    font-weight: 700;
+  }
+  section.promo-section-02 {
+    margin-top: 140%;
+    margin-bottom: 8%;
+  }
+
+  .inner-text {
+    position: relative;
+    left: 3%;
+    width: 100%;
+    top: 0%;
+  }
+
+  .image-background {
+    display: flex;
+    flex-direction: column;
+    max-height: fit-content;
+  }
+  .inner-card {
+    position: relative;
+  }
+  .container-calc {
+    width: 100%;
+    background-color: #fff;
+    position: relative;
+    border-radius: 20px;
+    left: 1px;
+    margin: 0 auto;
+    transform: 0;
+    transform: rotateY(337deg);
+    border-radius: 20px;
+    margin-top: 40%;
+  }
+  button.btn.btn-success.custom-btn-01 {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+@media only screen and (max-width: 1024.98px) and (min-width: 768px) {
+  .custom-flex {
+    width: 60%;
+    position: relative;
+    top: 30%;
+    left: 0%;
+  }
+
+  .card-body.cartText {
+    position: absolute;
+    top: 0%;
+    color: var(--secondary);
+    font-weight: 700;
+    vertical-align: middle;
+  }
+
+  .inner-text {
+    position: relative;
+    top: 30%;
+    width: 100%;
+    left: 3%;
+  }
+
+  .container-calc {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 20px;
+    left: 1px;
+    margin: 0 auto;
+    transform: 0;
+    transform: rotateY(337deg);
+    border-radius: 20px;
+    position: relative;
+    top: 120px;
+  }
+  .image-background {
+    width: 100%;
+    max-height: fit-content;
+  }
+
+  div#serviceList {
+    font-size: 18px;
+  }
+  .col.main-header h4 {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 1500.98px) {
 }
