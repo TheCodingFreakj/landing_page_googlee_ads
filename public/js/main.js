@@ -433,8 +433,8 @@
     };
 
     $.ajax({
-      //url: "https://www.pallavipriya.online/serviceDetails",
-      url: "http://localhost:9099/serviceDetails",
+      url: "https://www.pallavipriya.online/serviceDetails",
+      //url: "http://localhost:9099/serviceDetails",
       type: "POST",
       data: data,
       success: function (data) {
